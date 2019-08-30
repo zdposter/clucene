@@ -7,7 +7,7 @@ PROJECT (clucene)
 SET(CLUCENE_VERSION_MAJOR "2")
 SET(CLUCENE_VERSION_MINOR "3")
 SET(CLUCENE_VERSION_REVISION "3")
-SET(CLUCENE_VERSION_PATCH "4")
+SET(CLUCENE_VERSION_PATCH "5")
 
 # SOVERSION information
 #Must be incremented for releases if the api is not backwards compatible
