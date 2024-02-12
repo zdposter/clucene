@@ -99,6 +99,14 @@ IF ( MSVC_IDE )
 	SET ( ENABLE_COMPILE_TESTS_VALUE OFF )
 ENDIF( MSVC_IDE )
 
+IF(MSVC)
+  add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+  SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} /wd4244 /wd4267")
+  # Disable warnings for release build:
+  # /wd4244 conversion from '__int64' to 'int'
+  # /wd4267 conversion from 'size_t' to 'int32_t'
+ENDIF( MSVC )
+
 OPTION(ENABLE_COMPILE_TESTS
   "enable various projects that test alternative build switches"
   ${ENABLE_COMPILE_TESTS_VALUE})
