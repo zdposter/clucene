@@ -55,9 +55,7 @@ INCLUDE_DIRECTORIES( ${ZLIB_INCLUDE_DIR} )
 
 CHECK_INCLUDE_FILES ("sys/time.h;time.h" _CL_TIME_WITH_SYS_TIME)
 
-CHECK_REQUIRED_HEADERS ( stdlib.h stdarg.h stdio.h stddef.h ctype.h algorithm  
-						 functional map vector list set math.h fcntl.h limits.h)
-						 
+
 CHECK_OPTIONAL_HEADERS ( string.h sys/time.h memory.h sys/types.h 
                         stdint.h unistd.h io.h direct.h sys/dir.h sys/ndir.h dirent.h wctype.h fcntl.h
                         stat.h sys/stat.h stdexcept errno.h fcntl.h windef.h windows.h wchar.h 
@@ -94,12 +92,8 @@ DEFINE_DWORD()
 ########################################################################
 
 
-CHECK_REQUIRED_FUNCTIONS(  printf strftime wcscpy wcsncpy wcscat wcschr wcsstr wcslen 
-                           wcscmp wcsncmp wcscspn )
 
 #todo: wcstoq is bsd equiv of wcstoll, we can use that...
-CHECK_OPTIONAL_FUNCTIONS( wcsupr wcscasecmp wcsicmp wcstoll wprintf lltow 
-    wcstod wcsdup strupr strlwr lltoa strtoll gettimeofday _vsnwprintf mmap "MapViewOfFile(0,0,0,0,0)"
 )
 
 #make decisions about which functions to use...
