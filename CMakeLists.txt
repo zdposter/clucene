@@ -1,4 +1,6 @@
-PROJECT (clucene)
+#CMake 2.6+ is recommended to an improved Boost module
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5.0 FATAL_ERROR)
+PROJECT (clucene CXX)
 
 #Rules for version:
 #MAJOR and MINOR versions are purely political (tracks JLucene compatibility)
@@ -15,9 +17,6 @@ SET(CLUCENE_SOVERSION "1")
 
 MATH(EXPR CLUCENE_INT_VERSION "(${CLUCENE_VERSION_MAJOR} * 1000000) + (${CLUCENE_VERSION_MINOR} * 10000) + (${CLUCENE_VERSION_REVISION} * 100) + (${CLUCENE_VERSION_PATCH} * 1)" )
 SET(CLUCENE_VERSION "${CLUCENE_VERSION_MAJOR}.${CLUCENE_VERSION_MINOR}.${CLUCENE_VERSION_REVISION}.${CLUCENE_VERSION_PATCH}")
-
-#CMake 2.6+ is recommended to an improved Boost module
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4.0 FATAL_ERROR)
 
 if(COMMAND cmake_policy)
   cmake_policy(SET CMP0003 NEW)
@@ -60,9 +59,10 @@ OPTION(ENABLE_DMALLOC
 OPTION(ENABLE_ASCII_MODE
   "enable ascii support"
   OFF)
-  
-SET(ENABLE_ANSI_MODE OFF)
-IF(CMAKE_COMPILER_IS_GNUCXX)
+OPTION(ENABLE_ANSI_MODE
+  "compile with -ansi flag"
+  OFF)
+  IF(CMAKE_COMPILER_IS_GNUCXX)
   SET(ENABLE_ANSI_MODE ON)
   
   #exceptions:
@@ -70,10 +70,6 @@ IF(CMAKE_COMPILER_IS_GNUCXX)
     SET(ENABLE_ANSI_MODE OFF)
   ENDIF(MINGW OR CYGWIN)
 ENDIF(CMAKE_COMPILER_IS_GNUCXX)
-
-OPTION(ENABLE_ANSI_MODE
-  "compile with -ansi flag"
-  ${ENABLE_ANSI_MODE})
 OPTION(LUCENE_USE_INTERNAL_CHAR_FUNCTIONS
   "use internal character functions. required to run tests correctly"
   ON)
